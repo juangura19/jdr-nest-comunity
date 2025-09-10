@@ -15,7 +15,7 @@ export class MemberService {
     async findByTypeAndDocument(
         documentType: string,
         document: string
-    ): Promise<ResponseDto<MemberSchema>> {
+    ): Promise<ResponseDto<{ _id: any, documentType: string, document: string, name: string, lastname: string }>> {
         const data = await this.resource
             .find(
                 {
@@ -34,7 +34,13 @@ export class MemberService {
         return {
             success: true,
             message: Message.MSG_SUCCESS_TRUE,
-            data: data[0]
+            data: {
+                _id: data[0]._id,
+                documentType: documentType,
+                document: document,
+                name: data[0].name,
+                lastname: data[0].lastname
+            }
         }
     }
 

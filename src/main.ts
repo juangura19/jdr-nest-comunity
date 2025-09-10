@@ -10,9 +10,9 @@ async function bootstrap() {
       'https://gentle-glacier-0912d220f.2.azurestaticapps.net'  // si tienes prod
     ],
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization',
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
     credentials: true
   })
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3002);
 }
 bootstrap();
