@@ -14,6 +14,9 @@ export class Attendance extends Document {
     classId: string;
 
     @Prop({ required: true})
+    schoolId: string;
+
+    @Prop({ required: true})
     studyLesson: number;
 
     @Prop({ required: true })
