@@ -17,6 +17,7 @@ export class AttendanceService {
 
     async create(
         classId: string,
+        schoolId:string,
         request: AttendanceDto,
         username: string
     ): Promise<ResponseDto<AttendanceSchema>> {
@@ -40,7 +41,8 @@ export class AttendanceService {
         const model = new this.resource({
             ...request,
             classId: classId,
-            memberName: member.data?.name,
+            schoolId: schoolId,
+            memberName: `${member.data?.name} ${member.data?.lastname}`,
             userAud: username
         });
 

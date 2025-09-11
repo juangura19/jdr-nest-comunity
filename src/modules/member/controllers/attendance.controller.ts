@@ -16,16 +16,18 @@ export class AttendanceController {
     async create(
         @Body(new ValidationPipe()) request: AttendanceDto
     ) {
-        try {
-            const payload = await this.tokenService.verifyToken(request.token);
-            return await this.attendanceService.create(payload.sub, request, "admin");
-        } catch (error) {
-            console.log(error)
-            return {
-                success:false,
-                message:Message.MSG_ATTENDANCE_INVALID
-            }
-        }
+
+        const payload = await this.tokenService.verifyToken(request.token);
+        /*try {   
+       } catch (error) {
+           console.log(error)
+           return {
+               success:false,
+               message:Message.MSG_ATTENDANCE_INVALID
+           }
+       }*/
+
+        return await this.attendanceService.create(payload.sub,payload.schoolId, request, "community");
 
     }
 }
