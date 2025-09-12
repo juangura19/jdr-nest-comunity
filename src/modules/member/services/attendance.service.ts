@@ -17,7 +17,7 @@ export class AttendanceService {
 
     async create(
         classId: string,
-        schoolId:string,
+        schoolId: string,
         request: AttendanceDto,
         username: string
     ): Promise<ResponseDto<AttendanceSchema>> {
@@ -37,6 +37,13 @@ export class AttendanceService {
         }
 
         const member = await this.memberService.findById(request.memberId)
+
+        if (member.data?.schoolId == null || member.data?.schoolId !== schoolId) {
+            return {
+                success: false,
+                message: Message.MSG_MEMBER_NOT_SCHOOL
+            };
+        }
 
         const model = new this.resource({
             ...request,

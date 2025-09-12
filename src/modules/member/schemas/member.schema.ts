@@ -4,6 +4,9 @@ import { Document } from "mongoose";
 @Schema({ collection: "member", timestamps: true })
 export class Member extends Document {
 
+    @Prop({ required: false})
+    schoolId: string;
+    
     @Prop({ required: true})
     documentType: string;
 
