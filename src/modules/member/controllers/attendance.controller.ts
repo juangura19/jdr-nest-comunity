@@ -26,7 +26,6 @@ export class AttendanceController {
                message:Message.MSG_ATTENDANCE_INVALID
            }
        }*/
-
         return await this.attendanceService.create(payload.sub,payload.schoolId, request, "community");
 
     }
